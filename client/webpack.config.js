@@ -16,13 +16,14 @@ module.exports = () => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: './src/index.html',
+        template: './index.html',
         chunks: ['main'],
       }),
+      
       new WebpackPwaManifest({
         filename: 'manifest.json',
-        name: 'My Web',
-        short_name: 'PWA App',
+        name: 'JATE',
+        short_name: 'PWA JATE App',
         description: 'This app was created by assignment',
         background_color: '#ffffff',
         icons: [
