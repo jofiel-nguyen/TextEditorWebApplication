@@ -8,10 +8,10 @@ module.exports = () => {
     mode: 'development',
     entry: {
       main: './src/js/index.js',
-      install: './src/js/install.js',
+      install: './src/js/install.js'
     },
     output: {
-      filename: '[name].bundle.js',
+      filename: '[name].[contenthash].bundle.js',
       path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
@@ -19,7 +19,6 @@ module.exports = () => {
         template: './index.html',
         chunks: ['main'],
       }),
-      
       new WebpackPwaManifest({
         filename: 'manifest.json',
         name: 'JATE',
@@ -29,7 +28,7 @@ module.exports = () => {
         icons: [
           {
             src: path.resolve('src/images/logo.png'),
-            sizes: [96, 128, 192, 256, 384, 512], // adjust sizes as needed
+            sizes: [96, 128, 192, 256, 384, 512],
             purpose: 'any maskable',
           },
         ],

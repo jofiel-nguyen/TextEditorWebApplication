@@ -4,13 +4,12 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start:dev": "concurrently \"npm run server\" \"npm run client\"",
-    "start": "node server.js",
-    "server": "nodemon server.js",
-    "build": "webpack --config webpack.config.js",
-    "install": "node install.js",
-    "client": "webpack serve --config webpack.config.js --open",
-    "dev": "npm run start:dev" 
+    "start:dev": "",
+    "start": "",
+    "server": "",
+    "build": "",
+    "install": "",
+    "client": ""
   },
   "keywords": [],
   "author": "",
