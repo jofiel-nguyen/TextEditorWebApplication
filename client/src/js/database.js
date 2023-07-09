@@ -1,39 +1,31 @@
 import { openDB } from 'idb';
 
-const DB_NAME = 'jate';
-const DB_VERSION = 1;
-const STORE_NAME = 'jate';
+const dbPromise = openDB('jate', 1, {
+  upgrade(db) {
+    if (!db.objectStoreNames.contains('jate')) {
+      db.createObjectStore('jate', { keyPath: 'id', autoIncrement: true });
+    }
+  },
+});
 
-const initdb = async () => {
-  const db = await openDB(DB_NAME, DB_VERSION, {
-    upgrade(db) {
-      if (!db.objectStoreNames.contains(STORE_NAME)) {
-        db.createObjectStore(STORE_NAME, { keyPath: 'id', autoIncrement: true });
-        console.log('jate database created');
-      }
-    },
-  });
-  return db;
-};
-
-// Method to add content to the database
 export const putDb = async (content) => {
-  const db = await initdb();
-  const tx = db.transaction(STORE_NAME, 'readwrite');
-  const store = tx.objectStore(STORE_NAME);
-  await store.add(content);
-  await tx.done;
-  console.log('Content added to the database');
+  const db = await dbPromise;
+  const tx = db.transaction('jate', 'readwrite');
+  const store = tx.objectStore('jate');
+  await store.put(content);
+  await tx.complete;
 };
 
-// Method to get all content from the database
 export const getDb = async () => {
-  const db = await initdb();
-  const tx = db.transaction(STORE_NAME, 'readonly');
-  const store = tx.objectStore(STORE_NAME);
-  const content = await store.getAll();
-  await tx.done;
-  return content;
+  const db = await dbPromise;
+  const tx = db.transaction('jate', 'readonly');
+  const store = tx.objectStore('jate');
+  return store.getAll();
 };
 
-initdb();
+// Initialize the database
+dbPromise.then(() => {
+  console.log('IndexedDB initialized');
+}).catch((error) => {
+  console.error('Failed to initialize IndexedDB:', error);
+});

@@ -20,12 +20,6 @@ const pageCache = new CacheFirst({
   ],
 });
 
-// Warm up the page cache for specific URLs
-warmStrategyCache({
-  urls: ['/index.html', '/'],
-  strategy: pageCache,
-});
-
 // Register a route for navigations, using the page cache strategy
 registerRoute(
   ({ request }) => request.mode === 'navigate',
@@ -45,7 +39,7 @@ registerRoute(
         statuses: [0, 200],
       }),
       new ExpirationPlugin({
-        maxAgeSeconds: 7 * 24 * 60 * 60, 
+        maxAgeSeconds: 7 * 24 * 60 * 60,
       }),
     ],
   })
