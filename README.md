@@ -33,4 +33,5 @@ Proper build scripts for a webpack application should be in place for deployment
 ## Deployment
 The application can be deployed to Heroku using the Heroku Deployment Guide on The Full-Stack Blog.<br>
 This is heroku link: https://pwaapps-6193e22597e4.herokuapp.com/<br>
-![Deployed picture](./Assets/00-demo.gif)
+![Deployed picture](./Assets/00-demo.gif)<br>
+This is link github: https://github.com/nhunguyen-debug/PWA-From-Rice.git
